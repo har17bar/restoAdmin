@@ -1,0 +1,44 @@
+
+
+<div *ngIf="showPassCode">
+  <form>
+    Code:<input #code matInput type="text" required>
+    <br>
+    <button *ngIf="p_code" (click)="sendCode(code.value)">Send Code</button>
+  </form>
+</div>
+<div *ngIf="showRegister">
+  <span *ngIf="nights">The Room Costs {{prise}}$ For {{nights}} Nights </span>
+  <form>
+    First Name:
+    <br>
+    <input #fName  type="text" required>
+    <br>
+    Last Name:
+    <br>
+    <input #lName  type="text" required>
+    <br>
+    Email:
+    <br>
+    <input #email  type="email" required>
+    <br>
+    <button (click)="register(fName.value,lName.value,email.value)"> Register</button>
+  </form>
+</div>
+<div *ngIf="showBooking">
+<span>Check-In:</span>
+  <mat-form-field>
+    <input #from matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker" placeholder="Choose a date" [formControl]="date" disabled="true">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker disabled="false"></mat-datepicker>
+  </mat-form-field>
+  <span>Check-Out:</span>
+  <mat-form-field>
+    <input #to matInput [matDatepickerFilter]="myFilter1" [matDatepicker]="picker1" placeholder="Choose a date" [formControl]="date1" [value]="date1.value" disabled="true">
+    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+    <mat-datepicker #picker1 disabled="false"></mat-datepicker>
+  </mat-form-field>
+  <br>
+
+<button (click)="book(from.value,to.value)" >Book</button>
+</div>

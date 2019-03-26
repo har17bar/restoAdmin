@@ -1,0 +1,98 @@
+<app-admin-navbar></app-admin-navbar>
+
+
+<div class="container">
+    <div class="row">
+    <div class="col-md-4">
+        <div class="form_main">
+                <h4 class="heading"><strong>Add Room Panel</strong>  <span></span></h4>
+                <div class="form">
+                <form  method="post" id="contactFrm" name="contactFrm">
+                  <label>  Room Name Or Number:</label>
+                   <input #roomName type="text" required="" placeholder="Please input Room Name Or Number" value="" name="name" class="txt">
+
+                   <label> Room Type:</label>
+                   <br>
+                   <input #roomType  type="text" required="" placeholder="Please input Room Type" value="" name="mob" class="txt">
+                   <br>
+
+                   <label>Rooms Count:</label>
+                   <br>
+                   <input #max_occupancy type="text" required="" placeholder="Please input Rooms Count" value="" name="email" class="txt">
+
+                   <br>
+
+                   <label>Cost Per-Night:</label>
+                   <br>
+                   <input #cost_per_night type="text" required="" placeholder="Please input Room Cost Per Night" value="" name="email" class="txt">
+
+                   <br>
+
+                   <label> Floor:</label>
+                   <br>
+                   <input #floor type="text" required="" placeholder="Please input Room Floor" value="" name="email" class="txt">
+
+                   <br>
+
+                   <label>
+                      Attributes:
+                      <input class="txt" #attr />
+                      <ul>
+                        <li *ngFor='let atr of tempAttr'>
+                          <span>{{atr}}</span>
+                        </li>
+                      </ul>
+
+                      <button (click)="addAttr(attr.value) ; attr.value=''">Add Attribute</button>
+
+                    </label>
+                   <!--   Description:<textarea placeholder="Your Message" name="mess" type="text" class="txt_3"></textarea>
+                     <input type="submit" value="submit" name="submit" class="txt2"> -->
+                     <br>
+                    <button class="txt2"  (click)="addRoom(roomName.value,roomType.value,max_occupancy.value,cost_per_night.value,floor.value)">Add Room </button>
+
+                </form>
+                 </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+<!--
+<h2>Add Room Panel</h2>
+<div>
+    <label>
+      Room Name:
+      <input #roomName required />
+    </label>
+    <label>
+      Room Type:
+      <input #roomType required />
+    </label>
+    <label>
+      Maximum Occupancy:
+      <input #max_occupancy required />
+    </label>
+    <label>
+      Cost Per-Night:
+      <input #cost_per_night required />
+    </label>
+    <label>
+      Floor:
+      <input #floor required />
+    </label>
+    <label>
+      Attributes:
+      <input #attr />
+      <ul>
+        <li *ngFor='let atr of tempAttr'>
+          <span>{{atr}}</span>
+        </li>
+      </ul>
+
+      <button (click)="addAttr(attr.value) ; attr.value=''">Add Attribute</button>
+
+    </label>
+    <button (click)="addRoom(roomName.value,roomType.value,max_occupancy.value,cost_per_night.value,floor.value)">Add Room </button>
+  </div> -->

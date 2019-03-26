@@ -1,0 +1,139 @@
+
+<app-admin-navbar></app-admin-navbar>
+
+<!-- <a routerLink="/admin/add-room">Add Room</a> -->
+
+
+<h2>Rooms</h2>
+
+<div class="row">
+    <div class="list-group">
+        <div *ngFor="let room of rooms" class="list-group-item clearfix">
+            <a routerLink="/admin/room-detail/{{room._id}}">
+          <div class="profile-teaser-left">
+                <div class="profile-img"> <img class="media-object img-rounded img-responsive"  src="../../../assets/uploads/rooms/{{room._id}}/{{room.images[0]}}"  width="500" height="350" >
+                </div>
+            </div>
+            <div class="profile-teaser-main">
+                <h2 class="profile-name">Per-Night:{{room.cost_per_night}}$ --Go To Details --></h2>
+                <div class="profile-info">
+                    <div class="info"><span class="">Type:</span> {{room.type}}</div>
+                    <div class="info"><span class="">Floor:</span> {{room.floor}}</div>
+                    <div class="info"><span class="">Rooms:</span> {{room.max_occupancy}}</div>
+                    <div class="info"><span class="">Cost-Per-Night:</span> {{room.cost_per_night}}$</div>
+                    <br>
+                    <hr>
+                    <div class="info"><br><span class="">Attributes:</span><br> <span *ngFor="let attr of room.attributes">* {{attr}}<br></span><br></div>
+
+                    <div class="info"><span class="">Bookings:</span> {{room.booking.length}}</div>
+
+
+
+
+
+                </div>
+            </div>
+            </a>
+        </div><!-- item -->
+
+
+    </div>
+</div>
+
+
+
+
+<!--
+<ul>
+    <li *ngFor="let room of rooms">
+      <h4>
+        <a routerLink="/admin/room-detail/{{room._id}}">Room Name:{{room.room_name}}</a>
+      </h4>
+      <img class="media-object img-rounded img-responsive"  src="../../../assets/uploads/rooms/{{room._id}}/{{room.images[0]}}"  width="250" height="250" >
+
+      <br>
+      <span>Room Id:{{room._id}}</span>
+      <br>
+
+      <span>Room type {{room.type}}</span>
+      <br>
+      <span>Floor {{room.floor}}</span>
+      <br>
+
+      <span>Max Ocupancy {{room.max_occupancy}}</span>
+      <br>
+
+      <span>Cost Per Night {{room.cost_per_night}}</span>
+      <br>
+
+      <h4>Attributes:</h4>
+      <ul >
+        <li *ngFor="let attr of room.attributes">
+        <span>* {{attr}}</span>
+        </li>
+      </ul>
+      <br>
+      <h4>Bookings:</h4>
+      <ul>
+        <li *ngFor="let book of room.booking">
+          <span>*Check-in {{book.check_in}}</span>
+          <br>
+          <span>*Check-out {{book.check_out}}</span>
+        </li>
+      </ul>
+
+    </li>
+</ul> -->
+
+<!-- <div class="container">
+  <div class="row">
+  <div class="well">
+      <h1 class="text-center">All Rooms</h1>
+      <div class="list-group">
+        <a routerLink="/admin/room-detail/{{room._id}}" class="list-group-item active">
+              <div class="media col-md-3">
+                  <figure class="pull-left">
+                      <img class="media-object img-rounded img-responsive"  src="http://placehold.it/350x250" alt="placehold.it/350x250" >
+                  </figure>
+              </div>
+              <div class="col-md-6">
+                  <h4 class="list-group-item-heading"> Room Name:{{room.room_name}} </h4>
+                  <h4 class="list-group-item-heading"> Room type: {{room.type}} </h4>
+                  <h4 class="list-group-item-heading"> Floor: {{room.floor}} </h4>
+                  <h4 class="list-group-item-heading"> Max Ocupancy: {{room.max_occupancy}} </h4>
+                  <h4 class="list-group-item-heading"> Attributes: </h4>
+                      <ul >
+                          <li *ngFor="let attr of room.attributes">
+                          <span class="glyphicon glyphicon-star">* {{attr}}</span>
+                          </li>
+                        </ul>
+
+                  <h4 class="list-group-item-heading"> Bookings:</h4>
+                      <ul>
+                          <li *ngFor="let book of room.booking">
+                            <span>*Check-in {{book.check_in}}</span>
+                            <br>
+                            <span>*Check-out {{book.check_out}}</span>
+                          </li>
+                        </ul>
+
+
+              </div>
+              <div class="col-md-3 text-center">
+                  <h2> Per Night {{room.cost_per_night}} <small> $ </small></h2>
+                  <button type="button" class="btn btn-default btn-lg btn-block"> Vote Now! </button>
+                  <div class="stars">
+                      <span class="glyphicon glyphicon-star"></span>
+                      <span class="glyphicon glyphicon-star"></span>
+                      <span class="glyphicon glyphicon-star"></span>
+                      <span class="glyphicon glyphicon-star"></span>
+                      <span class="glyphicon glyphicon-star-empty"></span>
+                  </div>
+                  <p> Average 4.5 <small> / </small> 5 </p>
+              </div>
+        </a>
+
+      </div>
+      </div>
+</div>
+</div> -->

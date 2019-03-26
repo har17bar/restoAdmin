@@ -1,0 +1,139 @@
+
+<h4>Room Detail</h4>
+<h2 style="color: blue;">BEST OFFER:</h2>
+<h3 style="color: red;">PER-NIGHT: {{tempRoom.cost_per_night}}$</h3>
+
+
+
+
+
+<div  *ngIf="tempRoom" id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+
+
+
+    <!-- Indicators -->
+    <ol class="left carousel-indicators">
+    <li *ngFor='let img of tempRoom.images' data-target="#carousel-example-generic"  class="{{img.tagClass}}"></li>
+    <!-- <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li> -->
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div  class="carousel-inner" >
+        <div *ngFor='let img of tempRoom.images' class="item {{img.tagClass}} imgContainerRoom">
+            <!-- <img src="https://placeholdit.imgix.net/~text?txtsize=40&bg=800000&txtclr=ffffff&txt=SLIDE 1&w=1170&h=300" alt="..."> -->
+           <img  src="../../../assets/uploads/rooms/{{tempRoom._id}}/{{img.img}}" >
+          </div>
+
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+
+    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+
+</div>
+
+
+
+
+<div *ngIf="show" class="alert alert-success box-msg" role="alert">
+
+    <app-booking></app-booking>
+
+</div>
+<div>
+    <button (click) = "reserve()" class="knop">RESERVE</button>
+</div>
+
+
+
+<br>
+
+
+<div *ngIf="tempRoom">
+
+    <ul>
+        <hr>
+
+        <li>
+            <h2>TYPE:--> {{tempRoom.type}}</h2>
+        </li>
+        <hr>
+         <li>
+            <h2>FLOOR:--> {{tempRoom.floor}}</h2>
+        </li>
+        <hr>
+
+         <li>
+            <h2>ROOMS:--> {{tempRoom.max_occupancy}}</h2>
+        </li>
+        <hr>
+        <li>
+            <h2>COST-PER-NIGHT:--> {{tempRoom.cost_per_night}}$</h2>
+        </li>
+        <hr>
+        <h2>Attributes:</h2>
+        <ul >
+          <li *ngFor="let attr of tempRoom.attributes">
+          <h3 style="color:aqua;">* {{attr}}</h3>
+          </li>
+        </ul>
+        <hr>
+
+        <h2>Bookings:</h2>
+        <ul *ngIf="tempBookings">
+          <li *ngFor="let book of tempBookings">
+            <h3>*Check-in: {{book.booking.check_in}}</h3>
+            <br>
+            <h3>*Check-out: {{book.booking.check_out}}</h3>
+          </li>
+        </ul>
+        <h2 *ngIf="!tempBookings">No Bookings Yet</h2>
+
+
+    </ul>
+
+    <!-- <ul>
+      <li *ngFor='let img of tempRoom.images'>
+
+           <img  src="../../../assets/uploads/rooms/{{tempRoom._id}}/{{img}}" width="350" height="250">
+
+        </li>
+    </ul> -->
+    <!-- <span>Room type {{tempRoom.type}}</span>
+    <br>
+    <span>Floor {{tempRoom.floor}}</span>
+    <br>
+
+    <span>Max Ocupancy {{tempRoom.max_occupancy}}</span>
+    <br>
+
+    <span>Cost Per Night {{tempRoom.cost_per_night}}</span>
+    <br>
+
+    <h4>Attributes:</h4>
+    <ul >
+      <li *ngFor="let attr of tempRoom.attributes">
+      <span>* {{attr}}</span>
+      </li>
+    </ul>
+    <br>
+    <h4>Bookings:</h4>
+    <ul *ngIf="tempBookings">
+      <li *ngFor="let book of tempBookings">
+        <span>*Check-in: {{book.booking.check_in}}</span>
+        <br>
+        <span>*Check-out: {{book.booking.check_out}}</span>
+      </li>
+    </ul>
+    <span *ngIf="!tempBookings">No Bookings Yet</span>
+ -->
+
+
+
+</div>

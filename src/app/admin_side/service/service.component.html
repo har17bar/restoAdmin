@@ -1,0 +1,51 @@
+<app-admin-navbar></app-admin-navbar>
+
+<!-- <a routerLink="/admin/services/add-service">Add Service</a> -->
+<!--
+<h2>All Services</h2>
+<ul>
+  <li *ngFor="let service of services">
+    <h4>
+      <a routerLink="/admin/services/service-detail/{{service._id}}">Service Name:{{service.name}}</a>
+    </h4>
+    <br>
+    <span>Servic Id:{{service._id}}</span>
+    <br>
+
+    <span>Servic type {{service.type}}</span>
+    <br>
+    <ul>
+        <li *ngFor="let image of service.images">
+
+        </li>
+    </ul>
+
+  </li>
+</ul>
+ -->
+
+<div class="row">
+    <div class="list-group">
+        <div *ngFor="let service of services" class="list-group-item clearfix">
+            <h4>
+                <a routerLink="/admin/services/service-detail/{{service._id}}">Service Name:{{service.name}}</a>
+              </h4>
+          <div class="profile-teaser-left">
+                <div class="profile-img"> <img class="media-object img-rounded img-responsive"  src="../../../assets/uploads/services/{{service._id}}/{{service.images[0]}}"  width="500" height="350" >
+                </div>
+            </div>
+            <div class="profile-teaser-main">
+                <div class="profile-info">
+                    <div class="info"><span class="">Description:</span> {{service.type}}</div>
+
+
+
+
+                </div>
+            </div>
+
+        </div><!-- item -->
+
+
+    </div>
+</div>

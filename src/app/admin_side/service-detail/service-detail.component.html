@@ -1,0 +1,59 @@
+<app-admin-navbar></app-admin-navbar>
+
+<div class="container" *ngIf="tempService">
+
+  <input id="photo" type="file" name="uploadedFile" />
+  <!-- button to trigger the file upload when submitted -->
+  <button type="button" class="btn btn-success btn-s" (click)="upload()">
+  Upload Images
+  </button>
+
+  <!-- <ul>
+    <li *ngFor='let img of tempService.images'>
+         <button (click)="deleteFile(img)">X</button>
+         <img  src="../../../assets/uploads/services/{{tempService._id}}/{{img}}" width="250" height="250">
+
+      </li>
+  </ul> -->
+
+  <div>
+      <span *ngFor='let img of tempService.images' width="350" style="position: relative;">
+          <button (click)="deleteFile(img)" style="position: absolute; left:5;">X</button>
+          <img  src="../../../assets/uploads/services/{{tempService._id}}/{{img}}" width="350" height="350">
+
+      </span>
+    </div>
+  <!-- <label>Service Name: </label>
+  <input [(ngModel)]="tempService.name"/>
+  <br>
+  <label>Short Description:</label> -->
+  <!-- <input  [(ngModel)]="tempService.type"/> -->
+  <!-- <textarea rows="4" cols="50" [(ngModel)]="tempService.type"></textarea>
+  <br> -->
+  <div class="row">
+      <div class="col-md-4">
+          <div class="form_main">
+                  <h4 class="heading"><strong>Update Service Panel</strong> <span></span></h4>
+                  <div class="form">
+                  <form action="contact_send_mail.php" method="post" id="contactFrm" name="contactFrm">
+                      <label> Service Name:</label>
+                     <input [(ngModel)]="tempService.name" type="text" required="" placeholder="Please input Service Name" value="" name="name" class="txt">
+                    <!--   Password:<input type="text" required="" placeholder="Please input your Old Password" value="" name="mob" class="txt">
+                      New Password:<input type="text" required="" placeholder="Please input your New Password" value="" name="email" class="txt">
+                       -->
+                       <br>
+                       Description:<textarea  [(ngModel)]="tempService.type" placeholder="Short Description About Service" name="mess" type="text" class="txt_3"></textarea>
+
+                  </form>
+              </div>
+              </div>
+            </div>
+      </div>
+
+
+  <button (click)="save()">Update Service Data</button>
+  <button (click)="deleteService()">Delete Service</button>
+
+</div>
+
+

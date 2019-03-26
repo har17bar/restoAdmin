@@ -1,0 +1,41 @@
+<app-admin-navbar></app-admin-navbar>
+
+
+<div class="container">
+    <div class="row">
+    <div class="col-md-4">
+        <div class="form_main">
+                <h4 class="heading"><strong>Add Service Panel</strong> <span></span></h4>
+                <div class="form">
+                <form action="contact_send_mail.php" method="post" id="contactFrm" name="contactFrm">
+                    <label> Service Name:</label>
+                   <input #serviceName type="text" required="" placeholder="Please input Service Name" value="" name="name" class="txt">
+                  <!--   Password:<input type="text" required="" placeholder="Please input your Old Password" value="" name="mob" class="txt">
+                    New Password:<input type="text" required="" placeholder="Please input your New Password" value="" name="email" class="txt">
+                     -->
+                     <br>
+                     Description:<textarea  #serviceType placeholder="Short Description About Service" name="mess" type="text" class="txt_3"></textarea>
+                     <button  class="txt2" (click)="addService(serviceName.value,serviceType.value)">Add Service </button>
+
+                </form>
+            </div>
+            </div>
+          </div>
+    </div>
+</div>
+
+<!--
+<h2>Add Room Panel</h2>
+<div>
+    <label>
+      Service Name:
+      <input #serviceName required />
+    </label>
+    <label>
+
+      <label>Short Description:</label>
+      <textarea rows="4" cols="50" #serviceType ></textarea>
+    </label>
+
+    <button (click)="addService(serviceName.value,serviceType.value)">Add Service </button>
+  </div> -->

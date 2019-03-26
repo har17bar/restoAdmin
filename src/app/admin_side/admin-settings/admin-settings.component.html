@@ -1,0 +1,52 @@
+<app-admin-navbar></app-admin-navbar>
+
+
+<div class="container">
+    <div class="row">
+    <div class="col-md-4">
+        <div class="form_main">
+                <h4 class="heading"><strong>You Can Update Administrative Credentials</strong>  <span></span></h4>
+                <div class="form">
+                <form  method="post" id="contactFrm" name="contactFrm">
+                  <label> Username:</label>
+                   <input #userName type="text" required="" placeholder="Please input your Username" value="" name="name" class="txt">
+                   <label>Password:</label>
+                   <br>
+                   <input #password  type="password" required="" placeholder="Please input your Old Password" value="" name="mob" class="txt">
+                   <br>
+                   <label>New Password:</label>
+                   <br>
+                   <input #newPassword type="password" required="" placeholder="Please input your New Password" value="" name="email" class="txt">
+
+                   <!--   Description:<textarea placeholder="Your Message" name="mess" type="text" class="txt_3"></textarea>
+                     <input type="submit" value="submit" name="submit" class="txt2"> -->
+                     <br>
+                     <button class="txt2" (click)="updateAdminCreds(userName.value,password.value,newPassword.value)">Save</button>
+
+                </form>
+                 </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+<!-- <div>
+  <label>
+    Username:
+    <input #userName required />
+  </label>
+  <br/>
+  <label>
+   Password:
+    <input type="password" #password required />
+  </label>
+  <br/>
+
+  <label>
+    New Password:
+    <input type="password" #newPassword required />
+  </label>
+  <br/>
+  <button (click)="updateAdminCreds(userName.value,password.value,newPassword.value)">Save</button>
+  </div> -->

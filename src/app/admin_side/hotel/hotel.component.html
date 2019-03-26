@@ -1,0 +1,71 @@
+
+<app-admin-navbar></app-admin-navbar>
+
+<!-- File input for upload without using the plugin. -->
+<input id="photo" type="file" name="uploadedFile" />
+<!-- button to trigger the file upload when submitted -->
+<button type="button" class="btn btn-success btn-s" (click)="upload()">
+Upload Images
+</button>
+
+<div *ngIf="tempHotel">
+
+  <label>Hotel Name: </label>
+  <br>
+  <input [(ngModel)]="tempHotel.name" class="txt"/>
+  <br>
+  <label>Hotel Country:</label>
+  <br>
+  <input [(ngModel)]="tempHotel.country" class="txt"/>
+  <br>
+  <label>Hotel Region:</label>
+  <br>
+  <input [(ngModel)]="tempHotel.region" class="txt"/>
+  <br>
+
+  <label>Hotel City:</label>
+  <br>
+  <input [(ngModel)]="tempHotel.city" class="txt"/>
+  <br>
+
+  <label>Hotel Call-BAck Phone Number:</label>
+  <br>
+  <input [(ngModel)]="tempHotel.rooms_count" class="txt"/>
+  <br>
+  <label>Hotel Star:</label>
+  <br>
+  <input [(ngModel)]="tempHotel.stars" class="txt"/> stars
+  <h4>Attributes:</h4>
+  <input #attr class="txt"/>
+  <button (click)="addAttr(attr.value) ; attr.value=''">Add Attribute</button>
+  <ul>
+    <li *ngFor='let attr of tempHotel.attributes'>
+      <span>{{attr}}</span>
+      <button (click)="delAttr(attr)">X</button>
+    </li>
+
+  </ul>
+  <!-- <ul>
+    <li *ngFor='let img of tempHotel.images'>
+         <button (click)="deleteFile(img)">X</button>
+         <img  src="../../../assets/uploads/hotel/{{img}}" width="250" height="250">
+
+      </li>
+  </ul> -->
+
+  <div>
+    <span *ngFor='let img of tempHotel.images' width="350" style="position: relative;">
+        <!-- <button (click)="deleteFile(img)" style="position: absolute; left:5;">X</button>
+        <img  src="../../../assets/uploads/rooms/{{tempRoom._id}}/{{img}}" width="350" height="350"> -->
+        <button (click)="deleteFile(img)" style="position: absolute; left:5;">X</button>
+        <img  src="../../../assets/uploads/hotel/{{img}}" width="350" height="350">
+
+    </span>
+  </div>
+
+
+
+  <button (click)="save()">Update Hotel Data</button>
+
+
+</div>

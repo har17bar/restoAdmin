@@ -1,0 +1,215 @@
+
+
+<div class="container">
+
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-info navclass">
+    <a class="navbar-brand"><img src="https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwjonpmR2eHWAhUGuI8KHXw7CY8QjRwIBw&url=https%3A%2F%2Fwww.humanrightslogo.net%2Fen%2Fdownload&psig=AOvVaw0wnsRAS60Q_93j-WdF7J2y&ust=1507575119963069" alt="Logo"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+<div class="hover">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link class1" routerLink="/home">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link class1" (click)="Select('#Service')" routerLink="/home"  target="_self">Services</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link class1" (click)="Select('#Room')" routerLink="/home"  target="_self">Rooms</a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link " >About</a>
+        </li> -->
+         <li class="nav-item">
+          <a class="nav-link class1" (click)="Select('#Contact')" routerLink="/home">Contact</a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+  </nav>
+
+
+
+
+
+  <div  *ngIf="tempHotel" id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+
+    <div class="carousel-caption">
+
+
+      <div *ngIf="tempHotel">
+
+        <label>Hotel Name: {{tempHotel.name}} </label>
+        <br>
+        <label>Hotel Country: {{tempHotel.country}}</label>
+        <br>
+        <label>Hotel Region: {{tempHotel.region}} </label>
+        <br>
+
+        <label>Hotel City: {{tempHotel.city}} </label>
+        <br>
+
+        <!-- <label>Hotel Rooms Cunt: {{tempHotel.rooms_count}} </label>
+        <br> -->
+        <!-- <label>Hotel Star: {{tempHotel.stars}} -->
+
+            <div class="stars">
+                <span *ngFor="let st of stars" class="glyphicon glyphicon-star"></span>
+                <!-- <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star-empty"></span> -->
+            </div>
+        <!-- </label> -->
+
+
+      </div>
+    </div>
+
+    <!-- Indicators -->
+    <ol class="left carousel-indicators">
+    <li *ngFor='let img of tempHotel.images' data-target="#carousel-example-generic"  class="{{img.tagClass}}"></li>
+    <!-- <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li> -->
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div  class="carousel-inner" >
+        <div *ngFor='let img of tempHotel.images' class="item {{img.tagClass}} imgContainer">
+            <!-- <img src="https://placeholdit.imgix.net/~text?txtsize=40&bg=800000&txtclr=ffffff&txt=SLIDE 1&w=1170&h=300" alt="..."> -->
+           <img  src="../../../assets/uploads/hotel/{{img.img}}">
+
+          </div>
+
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+
+    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+
+</div>
+
+<hr id="Service">
+
+
+
+
+
+
+
+<h2>Service And Entertinment</h2>
+<div class="row">
+
+
+
+<!--  -->
+
+
+  <aside *ngFor='let serv of services'  class="col-md-6">
+      <a routerLink="/home/services/service-detail/{{serv._id}}">{{serv.name}}
+      <br>
+      <div class="ci basic-padding">
+          <div class="image-hover">
+          <img style="height: 300px;" class="img-responsive" src="../../../assets/uploads/services/{{serv._id}}/{{serv.images[0]}}" >
+          <article class="carousel-caption d-none d-md-block overlay">
+              <marquee> <h4 style="color: rgb(152, 152, 221);">Best Opportunity</h4></marquee>
+
+            </article>
+            </div>
+        </div>
+      </a>
+      <br>
+  </aside>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<hr id="Room">
+
+
+
+
+
+
+
+<!-- Rooms -->
+<h2>Rooms</h2>
+
+<div class="row">
+    <div class="list-group">
+        <div *ngFor="let room of rooms" class="list-group-item clearfix">
+            <a routerLink="/home/room-detail/{{room._id}}">
+          <div class="profile-teaser-left">
+                <div class="profile-img"> <img class="media-object img-rounded img-responsive"  src="../../../assets/uploads/rooms/{{room._id}}/{{room.images[0]}}"  width="500" height="350" >
+                </div>
+            </div>
+            <div class="profile-teaser-main">
+                <h2 class="profile-name">Per-Night:{{room.cost_per_night}}$ </h2>
+                <div class="profile-info">
+                    <div class="info"><span class="">Type:</span> {{room.type}}</div>
+                    <div class="info"><span class="">Floor:</span> {{room.floor}}</div>
+                    <div class="info"><span class="">Rooms:</span> {{room.max_occupancy}}</div>
+                    <div class="info"><span class="">Cost-Per-Night:</span> {{room.cost_per_night}}$</div>
+                    <br>
+                    <hr>
+                    <div class="info"><br><span class="">Attributes:</span><br> <span *ngFor="let attr of room.attributes">* {{attr}}<br></span><br></div>
+
+                    <div class="info"><span class="">Bookings:</span> {{room.booking.length}}</div>
+
+
+
+
+
+                </div>
+            </div>
+            </a>
+        </div><!-- item -->
+
+
+    </div>
+</div>
+
+<br>
+
+<hr id="Contact">
+
+<br>
+
+<footer  class="container-fluid text-center bg-lightgray">
+
+    <div class="copyrights" style="margin-top:25px;">
+        <p>Contacts
+            <br>
+            <span>Phone : {{tempHotel.rooms_count}}</span></p>
+        <p></p>
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+</div>
+
