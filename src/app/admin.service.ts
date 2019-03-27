@@ -21,6 +21,12 @@ export class AdminService {
       shareReplay()
     );
   }
+  getResto(id): Observable<any> {
+    const url = `${this.serverUrl}/resto/getResto`;
+    return this.http.post<any>(url, {token: localStorage.getItem('token'), query: {admin: localStorage.getItem('resto-user_id'), resto_id: id}}).pipe(
+      shareReplay()
+    );
+  }
 }
 
 

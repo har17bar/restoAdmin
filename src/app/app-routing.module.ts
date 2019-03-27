@@ -4,7 +4,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AppComponent } from './app.component';
 import { AdminComponent } from './components/admin/admin.component';
 import {RegisterComponent} from './auth/register/register.component';
-
+import {InRestoComponent} from   './components/in-resto/in-resto.component';
 import { LoginComponent } from './auth/login/login.component';
 import {AuthGuard} from './auth/auth.guard';
 
@@ -16,6 +16,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'registration', component: RegisterComponent},
   {path: 'admin', component: AdminComponent, canActivate: [AuthGuard]},
+  {path: 'admin/:id', component: InRestoComponent, canActivate: [AuthGuard]},
   // *******************************
   {path: '**', component: PageNotFoundComponent}
 ];

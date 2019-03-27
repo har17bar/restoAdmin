@@ -22,7 +22,6 @@ export class AdminComponent implements OnInit {
     this.loadScript('../../../assets/script.js');
     this.service.getAllRestourants(localStorage.getItem('resto-user_id')).subscribe((result) => {
       this.restos = result.restos;
-      console.log(  this.restos , '  this.restos ');
    });
   }
   loginWithPassword(id) {

@@ -26,6 +26,7 @@ import { MatDatepickerModule,
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { RegisterComponent } from './auth/register/register.component';
+import { InRestoComponent } from './components/in-resto/in-resto.component';
 
 @NgModule({
    declarations: [
@@ -33,7 +34,8 @@ import { RegisterComponent } from './auth/register/register.component';
       PageNotFoundComponent,
       AdminComponent,
       LoginComponent,
-      RegisterComponent
+      RegisterComponent,
+      InRestoComponent
    ],
    imports: [
         BrowserModule.withServerTransition({appId: 'my-app'}),
