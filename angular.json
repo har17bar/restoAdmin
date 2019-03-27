@@ -29,9 +29,11 @@
 
 
             ],
-            "scripts": ["src/assets/build/SalsaCalendar.min.js",
+            "scripts": [
+              "src/assets/build/SalsaCalendar.min.js",
               "node_modules/moment/min/moment.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "./node_modules/jquery/dist/jquery.js"
             ]
           },
           "configurations": {

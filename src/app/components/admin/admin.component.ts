@@ -1,10 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AdminService } from '../../admin.service';
-import { Room } from '../../Room';
 import {Router} from '@angular/router';
 
 
-import {AdminNavbarComponent} from '../admin-navbar/admin-navbar.component';
 
 @Component({
   selector: 'app-admin',

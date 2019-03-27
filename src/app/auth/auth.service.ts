@@ -3,8 +3,6 @@ import {Observable, of} from 'rxjs';
 import {tap, delay , shareReplay, map } from 'rxjs/operators';
 import {HttpClient, HttpHeaders , HttpResponse } from '@angular/common/http';
 import * as moment from 'moment';
-import {Admin} from '../Admin';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -19,7 +17,7 @@ export class AuthService {
   register(data): Observable<any> {
     return  this.http.post<any>('http://192.168.5.97:3000/admin/register', data)
   }
-  updateUser(data): Observable<any>{
+  updateUser(data): Observable<any> {
     return this.http.put<any>('http://192.168.5.97:3000/admin/verifyUser', data).pipe(shareReplay());
 
   }
