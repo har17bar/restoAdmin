@@ -24,16 +24,16 @@ import { BookingHistoryComponent } from './admin_side/booking-history/booking-hi
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
-  {path: 'any', component: AnyComponentComponent},
+  {path: 'login', component: LoginComponent},
   {path: 'registration', component: RegisterComponent},
   {path: 'admin', component: AdminComponent, canActivate: [AuthGuard]},
+  {path: 'any', component: AnyComponentComponent},
   {path: 'admin/add-room', component: AddRoomComponent, canActivate: [AuthGuard]},
   {path: 'admin/room-detail/:id', component: RoomDetailComponent,  canActivate: [AuthGuard]},
   {path: 'admin/services', component: ServiceComponent, canActivate: [AuthGuard]},
   {path: 'admin/services/add-service', component: AddServiceComponent, canActivate: [AuthGuard]},
   {path: 'admin/services/service-detail/:id', component: ServiceDetailComponent, canActivate: [AuthGuard]},
   {path: 'admin/hotel', component: HotelComponent, canActivate: [AuthGuard]},
-  {path: 'login', component: LoginComponent},
   {path: 'admin/settings', component: AdminSettingsComponent, canActivate: [AuthGuard]},
   {path: 'booking/history', component: BookingHistoryComponent, canActivate: [AuthGuard]},
   // *******************************

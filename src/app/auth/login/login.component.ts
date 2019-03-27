@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit {
     this.authService.login({
     'object': {phone: phone}
     }).subscribe(result => {
-      console.log(result);
       if (result.redirect === response.redirect.set_password) {
         this.phone = phone;
         this.who = result.data._id;
@@ -35,24 +34,17 @@ export class LoginComponent implements OnInit {
         this.phone = phone;
         this.boolForLogin = 'sentP';
       }
-      if (result.success) {
-        // this.router.navigate(['/admin', {authorized: 'true'}]);
-      } else {
-        console.log('Could Not Login We Had Trouble');
-      }
     }, error => {
       console.log('Could Not Login We Had Trouble', error.error);
     });
   }
   registersP( password: string, re_password: string) {
-    console.log(this.who)
     this.authService.updateUser({
       'query': {member_id: this.who},
       'object': {password: password, re_password: re_password, fb_id: 'esim'}
     }).subscribe(result => {
       if (result.success) {
-        console.log('success');
-        // this.router.navigate(['/admin', {authorized: 'true'}]);
+         this.router.navigate(['', {authorized: 'true'}]);
       } else {
         console.log('Could Not Login We Had Trouble');
       }
@@ -64,16 +56,21 @@ export class LoginComponent implements OnInit {
     this.authService.login({
       'object': {phone: this.phone, password: password}
     }).subscribe(result => {
-      console.log(result);
       if (result.success) {
         localStorage.setItem('token', result.token);
-       // this.router.navigate(['/admin', {authorized: 'true'}]);
+        localStorage.setItem('user_id', result.data._id);
+        console.log('aaaaaaaaaaa')
+        this.router.navigate(['/admin', {authorized: 'false'}]);
       } else {
         console.log('Could Not Login We Had Trouble');
       }
     }, error => {
       console.log('Could Not Login We Had Trouble', error.error);
     });
+  }
+  redirectToRegister() {
+    this.router.navigate(['/registration', {authorized: 'false'}]);
+
   }
 
 }

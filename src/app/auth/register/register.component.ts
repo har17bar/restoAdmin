@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../auth.service';
 import * as firebase from 'firebase';
-
+import {Router} from '@angular/router';
 var config = {
   apiKey: "AIzaSyCg_b9BzasyRI7WuFYvAPvIvGA4PRszRNI",
   authDomain: "resto-328bc.firebaseapp.com",
@@ -16,64 +16,75 @@ var config = {
   styleUrls: ['./register.component.css']
 })
 
-/*class PhoneNumber {
-  country: string;
-  area: string;
-  prefix: string;
-  line: string;
-  // format phone numbers as E.164
-  get e164() {
-    const num = this.country + this.area + this.prefix + this.line
-    return `+${num}`;
-  }
-}*/
 
 export class RegisterComponent implements OnInit {
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) {
+    this.render = false;
+    console.log('constructor');
+    setTimeout(() => {
+      this.windowRef = window;
+      if (!this.windowRef.recaptchaVerifier){
+        firebase.initializeApp(config);
+      }
+
+      this.windowRef.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
+      this.windowRef.recaptchaVerifier.render();
+
+    }, 0 );
+  }
   windowRef: any;
   phoneNumber: string;
   verificationCode: string;
   user: any;
+  render: boolean;
 
   ngOnInit() {
-    this.windowRef = window;
-    console.log( this.windowRef);
-    firebase.initializeApp(config);
-    this.windowRef.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
-    this.windowRef.recaptchaVerifier.render();
-
+    console.log('onint');
   }
   sendLoginCode(phone: string) {
+    this.phoneNumber = phone;
     const appVerifier = this.windowRef.recaptchaVerifier;
     firebase.auth().signInWithPhoneNumber(phone, appVerifier)
       .then(result => {
-        this.windowRef.confirmationResult = result;
+        if (result)   {
+          console.log(result,'resultt code')
+          this.windowRef.confirmationResult = result;
+          this.render = true;
+        }
       })
       .catch( error => console.log(error) );
   }
 
-  verifyLoginCode() {
+  verifyLoginCode(code: string) {
     this.windowRef.confirmationResult
-      .confirm(this.verificationCode)
+      .confirm(code)
       .then( result => {
+        console.log(result,'fffffffffffffffff');
         this.user = result.user;
+        localStorage.setItem('user_fb_uid', result.user.uid);
+        localStorage.setItem('user_phone', result.user.phoneNumber);
+
+
       })
       .catch( error => console.log(error, 'Incorrect code entered?'));
   }
 
 
-  /* register(name: String, phone: String, password: String, re_password: String, fb_id: String){
-
+   register(name: String, password: String, re_password: String){
+      if(password != re_password){
+        alert('Password Not Matching Re-Password');
+        return;
+      }
      this.authService.register({object:{
          name: name,
-         phone: phone,
+         phone: localStorage.getItem('user_phone'),
          password: password,
          re_password: re_password,
-         fb_id: fb_id
-       }}).subscribe(result=> {
-
-     }, error =>{
-
-     })
-   }*/
+         fb_id: localStorage.getItem('user_fb_uid')
+       }}).subscribe(result => {
+          console.log(result);
+     }, error => {
+        console.error(error);
+     });
+   }
 }

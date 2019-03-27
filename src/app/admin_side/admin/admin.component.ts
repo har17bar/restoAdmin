@@ -14,14 +14,15 @@ import {AdminNavbarComponent} from '../admin-navbar/admin-navbar.component';
 })
 
 export class AdminComponent implements OnInit {
-  rooms: Room[];
   @Input() tempAttr: string[] = [];
-  constructor(private service: AdminService, private router: Router) { }
+  constructor(private service: AdminService, private router: Router) {
+    console.log('adminnnn');
+  }
 
   ngOnInit() {
-    this.getAllRooms();
+  //  this.getAllRooms();
   }
-  getAllRooms(): void {
+  /*getAllRooms(): void {
     this.service.getAllRooms().subscribe((data) => {
       console.log('rooms data:', data);
       this.rooms = data;
@@ -31,6 +32,6 @@ export class AdminComponent implements OnInit {
       alert('Please try again or check your connection');
       console.error('Error During Fetching all rooms:' + error);
     });
-  }
+  }*/
 
 }

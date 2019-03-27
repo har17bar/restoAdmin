@@ -2,6 +2,7 @@
 <a routerLink="/admin/hotel">Go To hotel</a> -->
 
 <div *ngIf="boolForLogin=='setP'">
+  <h3>SET PASSWORD FOR VERIFICATION</h3>
   <form>
     <div class="form-group row">
       <div class="col-sm-10">
@@ -23,6 +24,7 @@
 </div>
 
 <div *ngIf="boolForLogin=='sentP'">
+  <h3>TYPE YOUR PASSWORD FOR LOGIN</h3>
   <form>
     <div class="form-group row">
       <div class="col-sm-10">
@@ -36,6 +38,7 @@
 </div>
 
 <div  *ngIf="boolForLogin=='phone'">
+  <h3>LOGIN</h3>
   <form>
     <div class="form-group row">
       <div class="col-sm-10">
@@ -45,7 +48,11 @@
       </div>
     </div>
     <input (click)="loginWithPhone(phone.value)" class="btn btn-primary" type="submit">
+    <div class="btn btn-primary" style="margin-left: 30px; display: inline-block;" (click)="redirectToRegister()">
+      Registratin
+    </div>
   </form>
+
 </div>
 
 <!-- Horizontal material form -->
