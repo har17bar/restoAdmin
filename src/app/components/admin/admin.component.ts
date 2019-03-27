@@ -13,23 +13,32 @@ import {Router} from '@angular/router';
 
 export class AdminComponent implements OnInit {
   @Input() tempAttr: string[] = [];
+  restos: [];
   constructor(private service: AdminService, private router: Router) {
-    console.log('adminnnn');
+
   }
 
   ngOnInit() {
-  //  this.getAllRooms();
+    this.loadScript('../../../assets/script.js');
+    this.service.getAllRestourants(localStorage.getItem('resto-user_id')).subscribe((result) => {
+      this.restos = result.restos;
+      console.log(  this.restos , '  this.restos ');
+   });
   }
-  /*getAllRooms(): void {
-    this.service.getAllRooms().subscribe((data) => {
-      console.log('rooms data:', data);
-      this.rooms = data;
-     // console.log(data);
-    },
-    (error) => {
-      alert('Please try again or check your connection');
-      console.error('Error During Fetching all rooms:' + error);
-    });
-  }*/
+  loginWithPassword(id) {
+      console.log(id, 'id');
+  }
+
+  logout() {
+    localStorage.removeItem('resto-user_id');
+    localStorage.removeItem('token');
+  }
+  loadScript(src) {
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    document.getElementsByTagName('body')[0].appendChild(script);
+    script.src = src;
+  }
+
 
 }

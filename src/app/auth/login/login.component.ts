@@ -59,7 +59,6 @@ export class LoginComponent implements OnInit {
           .then(result => {
             this.boolForLogin = 'setP';
             if (result)   {
-              console.log(result,'resultt code')
               this.windowRef.confirmationResult = result;
               this.render = true;
               this.phone = phone;
@@ -75,13 +74,13 @@ export class LoginComponent implements OnInit {
       }
     }, error => {
       console.log('Could Not Login We Had Trouble', error.error);
+      location.reload();
     });
   }
   verifyLoginCode(code: string) {
     this.windowRef.confirmationResult
       .confirm(code)
       .then( result => {
-        console.log(result,'fffffffffffffffff');
         this.user = result.user;
         localStorage.setItem('user_fb_uid', result.user.uid);
         localStorage.setItem('user_phone', result.user.phoneNumber);
@@ -100,13 +99,14 @@ export class LoginComponent implements OnInit {
       if (result.success) {
         localStorage.removeItem('user_fb_uid');
         localStorage.removeItem('user_phone');
-
         this.router.navigate(['']);
       } else {
         console.log('Could Not Login We Had Trouble');
+        location.reload();
       }
     }, error => {
       console.log('Could Not Login We Had Trouble', error.error);
+      location.reload();
     });
   }
   loginWithPassword(password: string): void {
@@ -115,14 +115,15 @@ export class LoginComponent implements OnInit {
     }).subscribe(result => {
       if (result.success) {
         localStorage.setItem('token', result.token);
-        localStorage.setItem('user_id', result.data._id);
-        console.log('aaaaaaaaaaa')
+        localStorage.setItem('resto-user_id', result.data._id);
         this.router.navigate(['/admin']);
       } else {
         console.log('Could Not Login We Had Trouble');
+        location.reload();
       }
     }, error => {
-      console.log('Could Not Login We Had Trouble', error.error);
+        console.log('Could Not Login We Had Trouble', error.error);
+      location.reload();
     });
   }
   redirectToRegister() {

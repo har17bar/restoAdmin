@@ -18,10 +18,10 @@ export class AuthGuard implements CanActivate {
   }
   checkLogin() {
     let succes;
-    if (localStorage.getItem('token') && localStorage.getItem('user_id')) {
+    if (localStorage.getItem('token') && localStorage.getItem('resto-user_id')) {
       const obj = <any>{};
       obj.token = localStorage.getItem('token');
-      obj.user_id = localStorage.getItem('user_id');
+      obj.user_id = localStorage.getItem('resto-user_id');
       $.post({
         url: 'http://192.168.5.97:3000/admin/checkLogin',
         data: obj,

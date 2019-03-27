@@ -59,7 +59,6 @@ export class RegisterComponent implements OnInit {
     this.windowRef.confirmationResult
       .confirm(code)
       .then( result => {
-        console.log(result,'fffffffffffffffff');
         this.user = result.user;
         localStorage.setItem('user_fb_uid', result.user.uid);
         localStorage.setItem('user_phone', result.user.phoneNumber);
@@ -75,7 +74,7 @@ export class RegisterComponent implements OnInit {
         alert('Password Not Matching Re-Password');
         return;
       }
-     this.authService.register({object:{
+     this.authService.register({object: {
          name: name,
          phone: localStorage.getItem('user_phone'),
          password: password,

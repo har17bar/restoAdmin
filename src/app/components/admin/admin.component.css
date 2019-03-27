@@ -129,9 +129,22 @@ ul {
     transform: scale(0.8) rotate(90deg);
   }
 }
-
+.redInactive {
+  height: 25px;
+  width: 25px;
+  background-color: red;
+  border-radius: 50%;
+  display: inline-block;
+}
+.greenActive {
+   height: 25px;
+   width: 25px;
+   background-color: green;
+   border-radius: 50%;
+   display: inline-block;
+ }
 .panel {
-  min-height: 100vh;
+  height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
