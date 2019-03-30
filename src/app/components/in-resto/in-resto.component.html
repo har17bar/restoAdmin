@@ -1,25 +1,17 @@
 <!--Version = {{version.full}} <br/>
 
 Upload Percent: {{percentDone}}% <br />-->
-<form >
+<form name="myForm" (ngSubmit)="uploadAndProgress()">
   <fieldset id="buildyourform">
-    <label style="float: left">categoris</label>
-    <input type="file"  #Catimage  />
-    <input type="text"  #CatimageName/>
-    <div class="form-group">
-      <div class="fieldwrapper" style="display: flex;flex-direction: row" id="field-1">
-        <input type="file" name="item"/>
-        <input name="name" type="text"/>
-        <input  name="price" type="text"/>
-        <input name="desc" type="text"/>
-      </div>
+    <div class="form-group For-append-category">
+      <input type="file"  />
+      <input  class="form-control"  id="categoryName" type="text" required  placeholder="Category name"/>
+    </div>
+    <div class="form-group For-append">
     </div>
   </fieldset>
   <input type="button" value="plus" class="add btn-number" id="add"  />
-  <input (click)="uploadAndProgress()" type="submit" class="btn btn-primary">
+  <input  type="submit" class="btn btn-primary">
 </form>
 
 
-<ng-container *ngIf="uploadSuccess">
-  Upload Successful
-</ng-container>

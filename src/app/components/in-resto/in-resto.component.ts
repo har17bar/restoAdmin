@@ -1,10 +1,9 @@
-import { Component, OnInit, VERSION } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {AdminService} from '../../admin.service';
 import {Router} from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import {HttpClientModule, HttpClient, HttpRequest, HttpResponse, HttpEventType} from '@angular/common/http';
-import { RequestOptions } from '@angular/http';
-import * as $ from 'jquery';
+import { HttpClient} from '@angular/common/http';
+
 @Component({
   selector: 'app-in-resto',
   templateUrl: './in-resto.component.html',
@@ -17,9 +16,7 @@ export class InRestoComponent implements OnInit {
 
   }
 
-  percentDone: number;
-  uploadSuccess: boolean;
-  version = VERSION;
+
   ngOnInit() {
     this.loadScript('../../../assets/scriptfile.js');
     this.route.params.subscribe(params => {
@@ -30,67 +27,52 @@ export class InRestoComponent implements OnInit {
   }
 
 
-  basicUpload(files: File[]) {
-    const formData = new FormData();
-    Array.from(files).forEach(f => formData.append('file', f))
-    this.http.post('https://file.io', formData)
-      .subscribe(event => {
-        console.log('done');
-      });
-  }
-
-  basicUploadSingle(file: File) {
-    this.http.post('https://file.io', file)
-      .subscribe(event => {
-        console.log('done');
-      });
-  }
-
   uploadAndProgress() {
-    var childs =$('.form-group').find("> div");
-    var childLength =childs.length;
-      for(var i=0; i<childLength;++i){
-        var el = $(childs[i]).find("> input")
-        for(var x=0; x< el.length; ++x){
-          var obj ={};
-          obj["name"] = "poxos"
-          if($(el[x]).attr("name") =='item'){
-            var file = $(el[x]).prop('files');
-            obj["pic"]=file;
+   var categoryChilds= document.getElementsByClassName('For-append-category')[0].getElementsByTagName('input'),
+        childs = document.getElementsByClassName(' For-append')[0].children,
+        formDataInstance = new FormData;
+    for (let i = 0, catChildLength = categoryChilds.length; i < catChildLength; ++i) {
+      if (categoryChilds[i].type == 'file') {
+        Array.from(categoryChilds[i].files).forEach(f => formDataInstance.append('categoryImage', f));
+      } else {
+        formDataInstance.append('categoryName',categoryChilds[i].value)
+        console.log(categoryChilds[i]['value']);
+      }
+    }
+    for (let i = 0, childLength = childs.length; i < childLength; ++i) {
+      let el = childs[i].getElementsByTagName('input');
+      let obj = {};
+      let name;
+      for (let j = el.length - 1; j > -1; --j) {
+        if ( el[j].type != 'file') {
+          obj[el[j].name] = el[j].value;
+        } else {
+          console.log();
+          if ( el[j].files.length) {
+            name = el[j].files['0'].name;
+            Array.from(el[j].files).forEach(f => formDataInstance.append('files', f));
+          } else {
+            // formDataInstance.append('files', 'null');
+            name = 'null';
           }
         }
-      this.xacho(obj)
       }
+      formDataInstance.append(name, JSON.stringify(obj));
+      this.uploadImage(formDataInstance);
+    }
 
   }
-  xacho(obj: Object) {
-    // let headers =  {headers: new  HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded'})};
-    const formData = new FormData();
-    Array.from(obj.pic).forEach(f => formData.append('file', f));
-    formData.append('harut','harut')
-    console.log(formData)
-    this.http.post('http://192.168.5.97:3000/admin/menu/createCategories', obj.pic, {reportProgress: true, observe: 'events'})
+
+  uploadImage(item) {
+    this.http.post('http://192.168.5.97:3000/admin/menu/createCategories', item, {reportProgress: true, observe: 'events'})
       .subscribe(event => {
-        if (event.type === HttpEventType.UploadProgress) {
-          this.percentDone = Math.round(100 * event.loaded / event.total);
-        } else if (event.type === HttpEventType.Response) {
-          console.log('done', HttpResponse)
-          this.uploadSuccess = true;
-        }
+
       }, error => {
-        console.log(error, 'errr');
+        // console.log(error, 'errr');
       });
   }
-  uploadAndProgressSingle(file: File) {
-    this.http.post('https://file.io', file, {reportProgress: true, observe: 'events'})
-      .subscribe(event => {
-        if (event.type === HttpEventType.UploadProgress) {
-          this.percentDone = Math.round(100 * event.loaded / event.total);
-        } else if (event instanceof HttpResponse) {
-          this.uploadSuccess = true;
-        }
-      });
-  }
+
+
   loadScript(src) {
     const script = document.createElement('script');
     script.type = 'text/javascript';
